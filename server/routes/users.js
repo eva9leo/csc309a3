@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var User = require('../modules/user');
+var db = mongoose.connection;
 /* GET users listing. */
 router.get('/',function(req, res){
   User.find(function(err, users){
@@ -11,13 +12,26 @@ router.get('/',function(req, res){
       res.json(users);
   })
 });
-router.get('/;id', function(req, res) {
-  console.log("a");
-  User.find({"id": req.params.id}, function (err, user) {
+router.post("/", function (req, res) {
+    var new_user = req.body;
+    if(!new_user.username||!new_user.password){
+      
+      throw err;
+    }
+    User.create(new_user, function (err, user) {
+        if(err){
+            throw err;
+        }
+        res.json(user);
+    })
+});
+router.get('/user', function(req, res) {
+  var username = req.param("username");
+  User.findOne({"username": username}, function (err, doc) {
       if(err){
         throw err;
       }
-      res.json(user);
+      res.json(doc);
   })
 });
 
