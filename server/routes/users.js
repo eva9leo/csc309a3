@@ -15,7 +15,7 @@ router.get('/',function(req, res){
 router.post("/", function (req, res) {
     var new_user = req.body;
     if(!new_user.username||!new_user.password){
-      
+
       throw err;
     }
     User.create(new_user, function (err, user) {
@@ -27,7 +27,7 @@ router.post("/", function (req, res) {
 });
 router.get('/user', function(req, res) {
   var username = req.param("username");
-  User.findOne({"username": username}, function (err, doc) {
+  User.findOne({"username": username},"username password", function (err, doc) {
       if(err){
         throw err;
       }
@@ -35,4 +35,12 @@ router.get('/user', function(req, res) {
   })
 });
 
+router.delete('/',function(req, res){
+    User.remove({}, function(err){
+        if(err){
+            throw err;
+        }
+        res.json({"success": true});
+    })
+});
 module.exports = router;

@@ -7,8 +7,9 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var index = require('./routes/index');
 var users = require('./routes/users');
+var messages = require('./routes/messages');
 
-mongoose.connect('mongodb://localhost/myfood',{
+mongoose.connect('mongodb://309:idontknow@ds017582.mlab.com:17582/myfood',{
   useMongoClient: true
 });
 var db = mongoose.connection;
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/api/users', users);
+app.use('/api/messages', messages);
 
 
 // catch 404 and forward to error handler

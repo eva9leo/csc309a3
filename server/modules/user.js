@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
-
-var userSchema = mongoose.Schema({
+var Record = require('./record');
+var recordSchema = mongoose.model('Record').schema;
+var Schema = mongoose.Schema;
+var userSchema = new Schema({
     username:{
         type: String,
         required: true
@@ -10,7 +12,7 @@ var userSchema = mongoose.Schema({
         required: true
     },
     records:{
-        type:[],
+        type:[recordSchema],
         default:[]
     }
 });
