@@ -16,6 +16,7 @@ router.post("/", function (req, res) {
     var new_user = req.body;
     if(!new_user.username||!new_user.password){
 
+      res.send("username and password is required");
       throw err;
     }
     User.create(new_user, function (err, user) {
