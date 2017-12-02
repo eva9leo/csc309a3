@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var messages = require('./routes/messages');
+var records = require('./routes/records');
 
 mongoose.connect('mongodb://309:idontknow@ds017582.mlab.com:17582/myfood',{
   useMongoClient: true
@@ -30,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/api/users', users);
 app.use('/api/messages', messages);
-
+app.use('/api/records', records);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

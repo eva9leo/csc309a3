@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
 
 var recordSchema = mongoose.Schema({
+    year:{
+        type: Number,
+        required: true
+    },
     month:{
         type: Number,
         required: true,
