@@ -85,7 +85,6 @@
 
 
     <div id = "secondView" style = "display: none" class = "main_view">
-
         <div id="searchContainer">
             <input class="search-input" type="text" id="search-txt" placeholder="Enter keywords for your food"></input>
             <button id="search">Search</button>
@@ -112,21 +111,88 @@
             <input class="login-input" placeholder="Enter Username" id="uname" required>
 
             <label class="login-label"><b>Password</b></label>
-            <input class="login-input" type="password" placeholder="Enter Password" required>
-            <button id="loginbtn" onclick="myFunction()">Login</button>
+            <input class="login-input" type="password" placeholder="Enter Password" id="upass" required>
+            <button id="loginbtn" onclick="loginFun()">Login</button>
+            <button id="register" onclick="regisFun()">Register</button>
+
         </div>
     </div>
     <script>
     var logged_in = false;
-    function myFunction() {
+    var url = "http://192.168.2.21:3000/api/users/user?username=";
+    var url_post = "http://192.168.2.21:3000/api/users";
+    function loginFun() {
         renderFirstView();
+        //validate User first
         var username = document.getElementById("uname").value;
+        var password = document.getElementById('upass').value;
+
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", url+username, false ); // false for synchronous request
+        xmlHttp.send();
+        //alert(xmlHttp.status);
+        //alert(xmlHttp.readyState);
+        var data=xmlHttp.responseText;
+        var jsonResponse = JSON.parse(data);
+        
+
+        if (jsonResponse == null){
+            alert("Username do not exist");
+            renderThirdView();
+            return;
+        }
+        if (password != jsonResponse["password"]){
+            alert("Wrong Password");
+            renderThirdView();
+            return;
+        }
+
+        //validate User first
+        
         document.getElementById("usr").innerHTML = username;
         document.getElementById("myintake").innerHTML = "My Intake";
         logged_in = true;
 		document.getElementById("thirdView").innerHTML = "<div id = 'post-login-content'></div>"
 		// document.getElementById("thirdView").innerHTML = "<div id='record-container' class='view2_container'></div>"
 		setUpRecordView();
+    }
+
+
+    function regisFun(){
+        renderFirstView();
+        //validate User first
+        var username = document.getElementById("uname").value;
+        var password = document.getElementById('upass').value;
+
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", url+username, false ); // false for synchronous request
+        xmlHttp.send();
+        //alert(xmlHttp.status);
+        //alert(xmlHttp.readyState);
+        var data=xmlHttp.responseText;
+        var jsonResponse = JSON.parse(data);
+
+        if (jsonResponse == null){
+            alert("Username do not exist yet, make new user");
+            xmlHttp.open( "POST", url_post, true );
+            xmlHttp.setRequestHeader("Content-Type", "application/json");
+            //alert(xmlHttp.status);
+            var sendReq = '{"username":' + '"'+username+'"' +', "password" :' + '"'+ password + '"'+'}';
+            //alert(sendReq);
+            xmlHttp.send(sendReq);
+            //alert(xmlHttp.status);
+            alert("register successful!");
+        }else{
+            alert("User existed");
+            return;
+        }
+        //validate User first
+        document.getElementById("usr").innerHTML = username;
+        document.getElementById("myintake").innerHTML = "My Intake";
+        logged_in = true;
+        document.getElementById("thirdView").innerHTML = "<div id = 'post-login-content'></div>"
+        // document.getElementById("thirdView").innerHTML = "<div id='record-container' class='view2_container'></div>"
+        setUpRecordView();
     }
     function renderFirstView(){
         document.getElementById("firstView").style.display = "block";
