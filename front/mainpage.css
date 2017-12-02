@@ -59,10 +59,10 @@ body, html {
 
 /* Code for FirstView starts */
 .quotebackgroundhelper{
- width: 50%;
- height: 29.5%;
+ width: 70%;
+ height: 35%;
  background: inherit;
- top: 58%;
+ top: 68%;
  left: 50%;
  transform: translateX(-50%) translateY(-50%);
  position: absolute;
@@ -71,10 +71,10 @@ body, html {
  /*background: #000000;*/
 }
 .quotebackground {
-    width: 50%;
-    height: 30%;
+    width: 70%;
+    height: 35.5%;
     position: absolute;
-    top: 58%;
+    top: 68%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
 
@@ -85,14 +85,45 @@ body, html {
     font: 25px Cursive;
     color: #ffffff;
     position: absolute;
-    width: 47%;
-    height: 27%;
-    top: 55%;
+    text-align: center;
+    width: 67%;
+    height: 33%;
+    top: 65%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);  
+}
+.messageBoxgroundhelper{
+ width: 50%;
+ height: 20%;
+ background: inherit;
+ top: 30%;
+ left: 50%;
+ transform: translateX(-50%) translateY(-50%);
+ position: absolute;
+ filter: blur(5px);
+ overflow: hidden;  //adding overflow hidden
+ /*background: #000000;*/
+}
+.messageBoxground {
+    width: 50%;
+    height: 20.5%;
+    position: absolute;
+    top: 30%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
 
-
-
+    background: inherit;
+    box-shadow: inset 0 0 0 200px rgba(255,255,255,0.3);
+}
+.messageBox {
+    font: 15px Cursive;
+    color: #ffffff;
+    position: absolute;
+    width: 47%;
+    height: 17%;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
 }
 /* Code for FirstView ends */
 
