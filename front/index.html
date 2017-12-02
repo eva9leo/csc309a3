@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>My Food</title>
+    <link rel="stylesheet" href="mainpage.css">
+    <link rel="stylesheet" href="view2.css">
+    <link rel="stylesheet" href="view3.css">
+</head>
+<body>
+    <div class = "top">
+        <ul class="nav">
+            <li onclick="renderFirstView()"><a>HOME</a></li>
+            <li onclick="renderSecondView()"><a>SEARCH</a></li>
+            <li id = "myintake" onclick="renderThirdView()"><a id = "demoinner">LOGIN</a></li>
+            <li id = "usr"> </li>
+        </ul>
+    </div>
+    <div id = "firstView" style = "display: block" class = "main_view">
+        <div class="quotebackground"></div>
+        <div class="quotebackgroundhelper"></div>
+        <div class="quotebox">
+            <p id="changeText"></p>
+            <script>
+            var text = ["The greatest wealth is health.  – Virgil"
+,"He who takes medicine and neglects to diet wastes the skill of his doctors. – Chinese Proverb"
+,"If you have health, you probably will be happy, and if you have health and happiness, you have the wealth you need, even if it is not all you want. – Elbert Hubbard"
+,"A good laugh and a long sleep are the best cures in the doctor’s book. – Irish Proverb"
+,"Health is a state of complete harmony of the body, mind and spirit. When one is free from physical disabilities and mental distractions, the gates of the soul open. – B.K.S. Iyengar"
+,"Happiness lies, first of all, in health. – George William Curtis, author of Lotus-Eating To keep the body in good health is a duty, otherwise we shall not be able to keep our mind strong and clear. – Buddha"
+,"A vigorous five-mile walk will do more good for an unhappy but otherwise healthy adult than all the medicine and psychology in the world. – Paul Dudley White (1886-1973)"
+,"Health and intellect are the two blessings of life. – Menander (ca. 342-291 BC)"
+,"Lack of activity destroys the good condition of every human being, while movement and methodical physical exercise save it and preserve it. – Plato"
+,"To insure good health: eat lightly, breathe deeply, live moderately, cultivate cheerfulness, and maintain an interest in life. – William Londen"
+,"There are lots of people in this world who spend so much time watching their health that they haven’t the time to enjoy it. – Josh Billings"
+,"The human body has been designed to resist an infinite number of changes and attacks brought about by its environment. The secret of good health lies in successful adjustment to changing stresses on the body. – Harry J. Johnson"
+,"The secret of health for both mind and body is not to mourn for the past, not to worry about the future, or not to anticipate troubles, but to live the present moment wisely and earnestly. – Siddartha Guatama Buddha"
+,"Men worry over the great number of diseases, while doctors worry over the scarcity of effective remedies. – Pien Ch’iao"
+,"Prevention is better than cure. – Desiderius Erasmus"
+,"Take care of your body. It’s the only place you have to live. – Jim Rohn"
+,"People who laugh actually live longer than those who don’t laugh. Few persons realize that health actually varies according to the amount of laughter. – James J. Walsh",
+"The reason I exercise is for the quality of life I enjoy. – Kenneth H. Cooper"];
+            var counter = 0;
+            var elem = document.getElementById("changeText");
+            elem.innerHTML = "Welcome to MyFood!"
+            setInterval(change, 10000);
+
+            function change() {
+              elem.innerHTML = text[counter];
+              counter++;
+              if (counter >= text.length) {
+                counter = 0;
+              }
+            }
+            </script>
+        </div>
+    </div>
+
+
+    <div id = "secondView" style = "display: none" class = "main_view">
+
+        <div id="searchContainer">
+            <input class="search-input" type="text" id="search-txt" placeholder="Enter keywords for your food"></input>
+            <button id="search">Search</button>
+        </div>
+
+		<div class="view2_container">
+			<div class="itembox search_result">
+				<table id="result-table" class="result-table"></table>
+			</div>
+			<div id = "food-info-box" class="itembox food_info">
+				<h2 class = "food_info_title">Nutritional value:</h2>
+				<ul id = "nutrition-list"></ul>
+			</div>
+		</div>
+    </div>
+
+    <div id = "thirdView" style = "display: none" class = "main_view">
+        <div class="container" id="login-container">
+            <div class="imgcontainer">
+                <img src="photos/avatar_empty.png" alt="Avatar" class="avatar">
+            </div>
+
+            <label class="login-label"><b>Username</b></label>
+            <input class="login-input" placeholder="Enter Username" id="uname" required>
+
+            <label class="login-label"><b>Password</b></label>
+            <input class="login-input" type="password" placeholder="Enter Password" required>
+            <button id="loginbtn" onclick="myFunction()">Login</button>
+        </div>
+    </div>
+    <script>
+    var logged_in = false;
+    function myFunction() {
+        renderFirstView();
+        var username = document.getElementById("uname").value;
+        document.getElementById("usr").innerHTML = username;
+        document.getElementById("myintake").innerHTML = "My Intake";
+        logged_in = true;
+		document.getElementById("thirdView").innerHTML = "<div id = 'post-login-content'></div>"
+		// document.getElementById("thirdView").innerHTML = "<div id='record-container' class='view2_container'></div>"
+		setUpRecordView();
+    }
+    function renderFirstView(){
+        document.getElementById("firstView").style.display = "block";
+        document.getElementById("secondView").style.display = "none";
+        document.getElementById("thirdView").style.display = "none"
+    }
+    function renderSecondView(){
+        document.getElementById("firstView").style.display = "none";
+        document.getElementById("secondView").style.display = "block";
+        document.getElementById("thirdView").style.display = "none"
+    }
+    function renderThirdView(){
+        console.log(recordDict);
+        document.getElementById("firstView").style.display = "none";
+        document.getElementById("secondView").style.display = "none";
+        document.getElementById("thirdView").style.display = "block"
+    }
+    </script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+	<script src="js/search_functions.js"></script>
+	<script src="js/record_management.js"></script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+/* Code for record list begins */
+#total-calories-display {
+	top: 0%;
+	background-color: #809fff;
+}
+/* Code for record list ends */
+
+/* Login Page */
+
+form {
+    border: 3px solid #f1f1f1;
+}
+
+.search-input{
+    width: 40%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+.login-input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#search {
+    width: 12%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+
+}
+#loginbtn{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-size: 16px;
+    float: center;
+}
+.view3btn1 {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 3px 2px;
+    cursor: pointer;
+    font-size: 13px;
+    float: right;
+}
+.view3btn2 {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 3px 2px;
+    cursor: pointer;
+    font-size: 13px;
+    float: left;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 12px 0 0 0;
+}
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+#login-container {
+    padding: 16px;
+    height: 380px;
+    width: 380px;
+    margin: 0 auto;
+    background-color: #ffffff;
+	opacity: 0.94;
+    text-align: center;
+}
+
+/* Intake Page */
+
+#intake-container {
+    padding: 16px;
+    height: 1000px;
+    width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+	opacity: 0.94;
+    text-align: center;
+}
+
+
+.login-label {
+    text-align: left;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+    .cancelbtn {
+        width: 100%;
+    }
+}

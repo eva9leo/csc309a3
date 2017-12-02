@@ -1,0 +1,108 @@
+#thirdView{
+    justify-content: center;
+    width: 100%;
+}
+h2 {
+    margin: 0;
+    text-align: center;
+}
+.nav {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    background-color: #595959;
+    color: white;
+    text-align: center;
+    padding: 20px 0 20px 0
+
+}
+.nav > li {
+    display: inline-block;
+    padding-right: 80px;
+}
+.nav > li >a {
+    text-decoration: none;
+}
+.nav > li:last-child {
+    float: right;
+ }
+
+.nav > li > a:hover{
+    color: gray;
+}
+div {
+    display: block;
+}
+#searchContainer{
+    margin-left: 10%;
+    text-align: center;
+    display: inline-block;
+    width: 50%;
+}
+#wrapper {
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+
+}
+
+body, html {
+	height: 100%;
+}
+
+.main_view {
+	background-image: url("photos/background.jpg");
+	min-height: 100%;
+	max-height: auto;
+}
+
+/* Code for FirstView starts */
+.quotebackgroundhelper{
+ width: 50%;
+ height: 29.5%;
+ background: inherit;
+ top: 58%;
+ left: 50%;
+ transform: translateX(-50%) translateY(-50%);
+ position: absolute;
+ filter: blur(5px);
+ overflow: hidden;  //adding overflow hidden
+ /*background: #000000;*/
+}
+.quotebackground {
+    width: 50%;
+    height: 30%;
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+
+    background: inherit;
+    box-shadow: inset 0 0 0 200px rgba(255,255,255,0.3);
+}
+.quotebox {
+    font: 25px Cursive;
+    color: #ffffff;
+    position: absolute;
+    width: 47%;
+    height: 27%;
+    top: 55%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+
+
+
+}
+/* Code for FirstView ends */
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+    .cancelbtn {
+        width: 100%;
+    }
+}
