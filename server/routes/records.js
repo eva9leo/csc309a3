@@ -43,12 +43,14 @@ router.post('/', function(req,res){
         if(!user){
             res.json({"success":false});
         }else{
-            User.update({_id:user._id}, {"$push": {"records":body}},function (err) {
+            var record = new Record(body);
+            console.log(record._id);
+            User.update({_id:user._id}, {"$push": {"records":record}},function (err) {
                 if(err){
                     console.log("error\n")
                     res.json({"success":false});
                 }else{
-                    res.json({"success":true});
+                    res.json(record);
                 }
             })
         }
@@ -56,43 +58,33 @@ router.post('/', function(req,res){
 });
 
 router.delete('/', function(req,res){
-    //var id = req.query._id;
-    var body = req.body;
-    var username = req.param("username");
-    if(!username||!body.year||!body.month||!body.day){
-        throw err;
-    }
-    User.findOne({"username":username}, function(err, user){
-        if(!user){
-            res.json({"success":false});
-        }else{
-            User.update({_id:user._id}, {"$pull": {"records":body}},function (err) {
-                if(err){
-                    res.json({"success":false});
-                }else{
-                    res.json({"success":true});
-                }
-            })
-        }
-    })
+    
+    var username = req.query.username;
+    var id = req.query._id;
+
+    User.findOneAndUpdate({"username":username, "records._id":id},
+        {"$pull":{}},function (err) {
+            if(err){
+                res.json({"success":false});
+            }
+            res.json({"success":true});
+        })
 });
 
 router.put('/', function(req,res){
-    var body = req.body;
-    console.log(body.serving_number);
-    var record = body;
     var username = req.query.username;
     var number = req.query.serving_number;
-    record.serving_number = number;
-    if(!username||!number||!body.year||!body.month||!body.day){
-        throw(err);
+    var id = req.query._id;
+    if(!username||!number||!id){
+        res.json({"success":false});
     }
-    User.update({"username":username,"records":body },{"$set":{"records": record}}, function(err){
+
+    User.findOneAndUpdate({"username":username, "records._id":id},
+        {"$set":{"records.$.serving_number":number}},function (err) {
         if(err){
-            throw err;
-        }else{
-            res.json(record);
+            res.json({"success":false});
         }
+            res.json({"success":true});
     })
 });
 

@@ -1,4 +1,5 @@
 var express = require('express');
+var manifest = require('express-manifest');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -9,7 +10,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var messages = require('./routes/messages');
 var records = require('./routes/records');
-
+var cors = require('cors');
 mongoose.connect('mongodb://309:idontknow@ds017582.mlab.com:17582/myfood',{
   useMongoClient: true
 });
@@ -27,6 +28,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors({credentials: true, origin: true}));
+app.use(function(req, res, next){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+    res.header("Access-Control-Allow-Headers", "Content-Type");
+    next();
+});
 
 app.use('/', index);
 app.use('/api/users', users);
