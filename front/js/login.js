@@ -38,13 +38,13 @@ function loginFun() {
     }
 
     //validate User first
-    logged_in = true;
+    /* logged_in = true;
     document.getElementById("navId").innerHTML += "<li id = 'usr'><button id='usrbtn' onclick='myFunction()'> </button></li>";
     document.getElementById("usrbtn").innerHTML = username+"<div class='popup'><button class='popuptext' id='myPopup' onclick='logout()'>Logout</button></div>";
     document.getElementById("myintake").innerHTML = "My Intake";
     document.getElementById("thirdView").innerHTML = "<div id = 'post-login-content'></div>"
-
-    setUpRecordView();
+	setUpRecordView(); */
+	actualLogin(username);
 
     var elem = document.getElementById("messageBox");
     elem.innerHTML = "Message from Admin Team: "
@@ -54,7 +54,7 @@ function loginFun() {
     setInterval(change2, 10000);
 
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "http://192.168.2.21:3000/api/messages", false ); // false for synchronous request
+    xmlHttp.open( "GET", "http://74.15.30.211:3000/api/messages", false ); // false for synchronous request
     xmlHttp.send();
     var data=xmlHttp.responseText;
     var Response = JSON.parse(data);
@@ -111,13 +111,13 @@ function regisFun(){
         //alert(xmlHttp.status);
         alert("register successful!");
     }
-    logged_in = true;
-    //validate User first
+	//validate User first
+	actualLogin(username);
+    /* logged_in = true;
     document.getElementById("usr").innerHTML = username;
     document.getElementById("myintake").innerHTML = "My Intake";
-    logged_in = true;
     document.getElementById("thirdView").innerHTML = "<div id = 'post-login-content'></div>"
-    setUpRecordView();
+    setUpRecordView(); */
 
     var elem = document.getElementById("messageBox");
     elem.innerHTML = "Message from Admin Team: "
@@ -126,7 +126,7 @@ function regisFun(){
     }
     setInterval(change2, 10000);
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "http://192.168.2.21:3000/api/messages", false ); // false synchronous request
+    xmlHttp.open( "GET", "http://74.15.30.211:3000/api/messages", false ); // false synchronous request
     xmlHttp.send();
     var response = JSON.parse(xmlHttp.responseText);
     var i = 0;
@@ -140,3 +140,140 @@ function regisFun(){
         }
     }
 }
+
+function actualLogin (name) {
+	logged_in = true;
+    document.getElementById("navId").innerHTML += "<li id = 'usr'><button id='usrbtn' onclick='myFunction()'> </button></li>";
+    document.getElementById("usrbtn").innerHTML = name+"<div class='popup'><button class='popuptext' id='myPopup' onclick='logout()'>Logout</button></div>";
+    document.getElementById("myintake").innerHTML = "My Intake";
+    document.getElementById("thirdView").innerHTML = "<div id = 'post-login-content'></div>"
+	
+	getLocalDate()
+	console.log(currentDate.year + '/' + currentDate.month + '/' + currentDate.date);
+	
+	setUpRecordView();
+}
+
+function setUpRecordView() {
+			$('#post-login-content').append(
+				$('<div>', {
+				id: 'total-calories-display'
+			}));
+
+			$('#total-calories-display').append(
+				$('<h2>', {
+				text: 'Energy: 0 kCal, Protein: 0 g, Fat: 0 g, Carbohydrate: 0 g'
+			}));
+			
+			$('#post-login-content').append(
+				$('<div>', {
+				id: 'date-selection'
+			}));
+			
+			 setUpDateSelection();
+
+			$('#post-login-content').append(
+				$('<div>', {
+				class: 'view2_container',
+				id: 'record-container'
+			}));
+
+			$('#record-container').append(
+				$('<div>', {
+				class: 'itembox search_result',
+				id: 'record-list-div'
+			}));
+
+			$('#record-list-div').append(
+				$('<ul>', {
+				id: 'record-list'
+			}));
+
+			$('#record-container').append(
+				$('<div>', {
+				class: 'itembox food_info',
+				id: 'record-info'
+			}));
+
+			$('#record-info').append(
+				$('<h2>', {
+				class: 'food_info_title',
+				text: 'Nutritional value'
+			}));
+
+			$('#record-info').append(
+				$('<ul>', {
+				id: 'record-nutrition-ul'
+			}));
+}
+
+function setUpDateSelection() {
+	// Setup year selection
+	$('#date-selection').append('<select id="year-select">'  + '</select>');
+	
+	for (var year = (currentDate.year - 5); year <= (currentDate.year + 5); year++) {
+		
+		if (year == currentDate.year) {
+			$('#year-select').append(
+				'<option value=' + year + ' selected>' + year + '</option>'
+			);
+		} else {
+			$('#year-select').append(
+				'<option value=' + year + '>' + year + '</option>'
+			);
+		}
+		
+	}
+	
+	// Setup months and dates selection
+	$('#date-selection').append('<select id="month-select" onclick="updateDate(this.value)">'  + '</select>');
+	$('#date-selection').append('<select id="date-select">'  + '</select>');
+	
+	for (var month = 1; month <= 12; month++) {
+		
+		if (month == currentDate.month) {
+			$('#month-select').append(
+				'<option value=' + month + ' selected>' + month + '</option>'
+			);
+		} else {
+			$('#month-select').append(
+				'<option value=' + month + ' >' + month + '</option>'
+			);
+		}
+		
+	}
+	
+	updateDate(currentDate.month);
+	
+}
+
+function updateDate(month){
+	if ((typeof month) != 'number') {
+		month = Number(month);
+	}
+	
+	var longmonths = [1,3,5,7,8,10,12];
+	
+	console.log(longmonths.length);
+	console.log(longmonths[6])
+	console.log(1 in longmonths);
+	console.log(1 in longmonths);
+	console.log(3 in longmonths);
+	console.log(5 in longmonths);
+	console.log(7 in longmonths);
+	console.log(8 in longmonths);
+	console.log(10 in longmonths);
+	console.log(12 in longmonths);
+	var total_dates = 0;
+	if (month in longmonths) {
+		total_dates = 31;
+	}
+	
+	for (var date = 1; date <= total_dates; date++) {
+		$('#date-select').append(
+			'<option value=' + date + ' >' + date + '</option>'
+		);
+	}
+}
+
+
