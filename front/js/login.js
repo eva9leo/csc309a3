@@ -254,20 +254,14 @@ function updateDate(month){
 	
 	var longmonths = [1,3,5,7,8,10,12];
 	
-	console.log(longmonths.length);
-	console.log(longmonths[6])
-	console.log(1 in longmonths);
-	console.log(1 in longmonths);
-	console.log(3 in longmonths);
-	console.log(5 in longmonths);
-	console.log(7 in longmonths);
-	console.log(8 in longmonths);
-	console.log(10 in longmonths);
-	console.log(12 in longmonths);
+
+	
 	var total_dates = 0;
-	if (month in longmonths) {
+	if (longmonths.indexOf(month) != -1) {
 		total_dates = 31;
-	}
+	}else{
+        alert("this month is not long month");
+    }
 	
 	for (var date = 1; date <= total_dates; date++) {
 		$('#date-select').append(
