@@ -9,15 +9,15 @@
 </head>
 <script>
 var logged_in = false;
-var url_login = "http://192.168.2.21:3000/api/users/";
-var url_regis = "http://192.168.2.21:3000/api/users/user?username=";
-var url_post = "http://192.168.2.21:3000/api/users";
+var url_login = "http://74.15.30.211:3000/api/users/";
+var url_regis = "http://74.15.30.211:3000/api/users/user?username=";
+var url_post = "http://74.15.30.211:3000/api/users";
 function loginFun() {
     renderFirstView();
     //validate User first
     var username = document.getElementById("uname").value;
     var password = document.getElementById('upass').value;
-    
+
     var GetUserExist = url_regis+username;
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", GetUserExist, false ); // false for synchronous request
@@ -32,7 +32,7 @@ function loginFun() {
     }
 
 
-    
+
     var GetUser = url_login+username+"?password="+password;
     xmlHttp.open( "GET", GetUser, false ); // false for synchronous request
     xmlHttp.send();
@@ -46,15 +46,15 @@ function loginFun() {
         renderThirdView();
         return;
     }
-    
+
     //validate User first
     logged_in = true;
     document.getElementById("usr").innerHTML = username;
-    document.getElementById("myintake").innerHTML = "My Intake";   
+    document.getElementById("myintake").innerHTML = "My Intake";
     document.getElementById("thirdView").innerHTML = "<div id = 'post-login-content'></div>"
 
     setUpRecordView();
-        
+
     var elem = document.getElementById("messageBox");
     elem.innerHTML = "Message from Admin Team: "
     if(logged_in == true){
@@ -156,7 +156,7 @@ function regisFun(){
         <div class="messageBox">
             <p id="messageBox"></p>
             <script>
-            
+
             </script>
         </div>
 
@@ -207,7 +207,7 @@ function regisFun(){
     <div id = "secondView" style = "display: none" class = "main_view">
         <div id="searchContainer">
             <input class="search-input" type="text" id="search-txt" placeholder="Enter keywords for your food"></input>
-            <button id="search">Search</button>
+            <button class="searchbtn" id="search">Search</button>
         </div>
 
 		<div class="view2_container">
@@ -238,8 +238,8 @@ function regisFun(){
         </div>
     </div>
     <script>
-    
-    
+
+
     function renderFirstView(){
         document.getElementById("firstView").style.display = "block";
         document.getElementById("secondView").style.display = "none";

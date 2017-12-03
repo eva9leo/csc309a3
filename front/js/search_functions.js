@@ -10,41 +10,41 @@ function setUpRecordView() {
 				$('<div>', {
 				id: 'total-calories-display'
 			}));
-			
+
 			$('#total-calories-display').append(
 				$('<h2>', {
 				text: 'Energy: 0 kCal, Protein: 0 g, Fat: 0 g, Carbohydrate: 0 g'
 			}));
-			
+
 			$('#post-login-content').append(
 				$('<div>', {
 				class: 'view2_container',
 				id: 'record-container'
 			}));
-			
+
 			$('#record-container').append(
 				$('<div>', {
 				class: 'itembox search_result',
 				id: 'record-list-div'
 			}));
-			
+
 			$('#record-list-div').append(
 				$('<ul>', {
 				id: 'record-list'
 			}));
-			
+
 			$('#record-container').append(
 				$('<div>', {
 				class: 'itembox food_info',
 				id: 'record-info'
 			}));
-			
+
 			$('#record-info').append(
 				$('<h2>', {
 				class: 'food_info_title',
 				text: 'Nutritional value'
 			}));
-			
+
 			$('#record-info').append(
 				$('<ul>', {
 				id: 'record-nutrition-ul'
@@ -128,9 +128,11 @@ function DisplayItemInfo(ndbno) {
 				}
 			});
 
-			$('#nutrition-list').empty();
 			// Display name
-			$('#nutrition-list').append($('<h2 class = "food_info_title food_info_name" >').text(data.report.food.name));
+			$('#foodname').remove();
+			$('.food_info_title').after($('<h2 class = "food_info_title food_info_name" id = "foodname">').text(data.report.food.name));
+
+			$('#nutrition-list').empty();
 			// Display serving
 			$('#nutrition-list').append($('<li>').text('Serving size: ' + serving_size.toString() + ' ' + serving_unit));
 			// Display energy
@@ -141,7 +143,7 @@ function DisplayItemInfo(ndbno) {
 			$('#nutrition-list').append($('<li>').text('Fat: ' + fat_scalar.toString() + ' ' + fat_unit));
 			// Display carbohydrate
 			$('#nutrition-list').append($('<li>').text('Carbohydrate: ' + carb_scalar.toString() + ' ' + carb_unit));
-			
+
 			// Display serving number input
 			$('#nutrition-list').append(
 			 $('<input>', {
@@ -155,7 +157,7 @@ function DisplayItemInfo(ndbno) {
 			$('#nutrition-list').append(
 				$('<button id = "add-food">')
 				.text('Add')
-				.click(function() { 
+				.click(function() {
 					var serving_number_input = document.getElementById('serving-input').value;
 					if (logged_in == false) {
 						alert('You can add foods to your intake record once logged in.');
@@ -173,7 +175,7 @@ function DisplayItemInfo(ndbno) {
 						);
 						alert('A record has been added to your intake records');
 					}
-					
+
 				})
 			);
 		}

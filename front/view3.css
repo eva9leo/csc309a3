@@ -28,16 +28,6 @@ form {
     box-sizing: border-box;
 }
 
-#search {
-    width: 12%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-
-}
 #loginbtn{
     background-color: #4CAF50; /* Green */
     border: none;
