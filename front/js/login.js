@@ -209,7 +209,7 @@ function setUpRecordView() {
 
 function setUpDateSelection() {
 	// Setup year selection
-	$('#date-selection').append('<select id="year-select">'  + '</select>');
+	$('#date-selection').append('<select id="year-select" onchange="updateDate()">'  + '</select>');
 	
 	for (var year = (currentDate.year - 5); year <= (currentDate.year + 5); year++) {
 		
@@ -225,8 +225,8 @@ function setUpDateSelection() {
 		
 	}
 	
-	// Setup months and dates selection
-	$('#date-selection').append('<select id="month-select" onclick="updateDate(this.value)">'  + '</select>');
+	// Setup months selection
+	$('#date-selection').append('<select id="month-select" onchange="updateDate()">'  + '</select>');
 	$('#date-selection').append('<select id="date-select">'  + '</select>');
 	
 	for (var month = 1; month <= 12; month++) {
@@ -243,30 +243,41 @@ function setUpDateSelection() {
 		
 	}
 	
-	updateDate(currentDate.month);
+	// Setup dates selection
+	updateDate();
 	
+	$('#date-selection').append('<button id="change-date">Change Date</button>')
 }
 
-function updateDate(month){
-	if ((typeof month) != 'number') {
-		month = Number(month);
-	}
+function updateDate(){
+
+	var month = Number(document.getElementById('month-select').value);
+	var year = Number(document.getElementById('year-select').value);
+	
+	document.getElementById('date-select').options.length = 0;
 	
 	var longmonths = [1,3,5,7,8,10,12];
-	
-
 	
 	var total_dates = 0;
 	if (longmonths.indexOf(month) != -1) {
 		total_dates = 31;
-	}else{
-        alert("this month is not long month");
-    }
+	}else if (month == 2){
+        if ((year % 4) == 0) {
+			total_dates = 29;
+		} else {
+			total_dates = 28;
+		}
+    } else {
+		total_dates = 30;
+	}
 	
 	for (var date = 1; date <= total_dates; date++) {
-		$('#date-select').append(
-			'<option value=' + date + ' >' + date + '</option>'
-		);
+		
+		if (date == currentDate.date) {
+			$('#date-select').append('<option value=' + date + ' selected>' + date + '</option>');
+		}else {
+			$('#date-select').append('<option value=' + date + ' >' + date + '</option>');
+		}
 	}
 }
 
