@@ -28,9 +28,33 @@
             var counter = 0;
             var elem = document.getElementById("messageBox");
             elem.innerHTML = "Message from Admin Team: "
-            setInterval(change, 10000);
+            setInterval(change2, 10000);
 
-            function change() {
+
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", "http://192.168.2.21:3000/api/messages", false ); // false for synchronous request
+            //xmlHttp.setRequestHeader("Content-Type", "application/json");
+            //xmlHttp.withCredentials = true;
+            xmlHttp.send();
+            //xmlHttp.send('{"username": "zhongzhong", "password" : "xiaoze"}');
+            alert(xmlHttp.status);
+            alert(xmlHttp.readyState);
+            var response = JSON.parse(xmlHttp.responseText);
+            //alert(response.getClass().getName());
+            if (xmlHttp.responseText == null){
+                alert("null");
+            }else{
+                var response = JSON.parse(xmlHttp.responseText);
+                alert(response[0].title);
+                alert(response[0].contents);
+            }
+            //alert(response);
+            alert("done");
+
+
+
+            function change2() {
+
               elem.innerHTML = text[counter];
               counter++;
               if (counter >= text.length) {
@@ -148,7 +172,7 @@
         }
 
         //validate User first
-        
+        logged_in = true;
         document.getElementById("usr").innerHTML = username;
         document.getElementById("myintake").innerHTML = "My Intake";
         logged_in = true;
