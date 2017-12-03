@@ -5,52 +5,6 @@ $('#search-txt').keyup(function(event) {
 	}
 })
 
-function setUpRecordView() {
-			$('#post-login-content').append(
-				$('<div>', {
-				id: 'total-calories-display'
-			}));
-
-			$('#total-calories-display').append(
-				$('<h2>', {
-				text: 'Energy: 0 kCal, Protein: 0 g, Fat: 0 g, Carbohydrate: 0 g'
-			}));
-
-			$('#post-login-content').append(
-				$('<div>', {
-				class: 'view2_container',
-				id: 'record-container'
-			}));
-
-			$('#record-container').append(
-				$('<div>', {
-				class: 'itembox search_result',
-				id: 'record-list-div'
-			}));
-
-			$('#record-list-div').append(
-				$('<ul>', {
-				id: 'record-list'
-			}));
-
-			$('#record-container').append(
-				$('<div>', {
-				class: 'itembox food_info',
-				id: 'record-info'
-			}));
-
-			$('#record-info').append(
-				$('<h2>', {
-				class: 'food_info_title',
-				text: 'Nutritional value'
-			}));
-
-			$('#record-info').append(
-				$('<ul>', {
-				id: 'record-nutrition-ul'
-			}));
-}
-
 function searchFood() {
 	var name = document.getElementById("search-txt").value;
 
