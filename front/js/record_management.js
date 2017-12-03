@@ -110,8 +110,3 @@ function updateTotalDisplay() {
 		text: new_summary
 	}));
 }
-
-function getLocalDate() {
-	var d = new Date();
-	console.log(d.getFullYear + '/' + d.getMonth + '/' d.getDate);
-}
