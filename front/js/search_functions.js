@@ -134,7 +134,7 @@ function DisplayItemInfo(ndbno) {
 
 			$('#nutrition-list').empty();
 			// Display serving
-			$('#nutrition-list').append($('<li>').text('Serving size: ' + serving_size.toString() + ' ' + serving_unit));
+			$('#nutrition-list').append($('<li>').text('Serving size: ' + serving_size.toString() + ' ' + sejrving_unit));
 			// Display energy
 			$('#nutrition-list').append($('<li>').text('Energy: ' + energy_scalar.toString() + ' ' + energy_unit));
 			// Display protein

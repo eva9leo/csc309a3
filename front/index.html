@@ -49,7 +49,8 @@ function loginFun() {
 
     //validate User first
     logged_in = true;
-    document.getElementById("usr").innerHTML = username;
+    document.getElementById("navId").innerHTML += "<li id = 'usr'><button id='usrbtn' onclick='myFunction()'> </button></li>";
+    document.getElementById("usrbtn").innerHTML = username+"<div class='popup'><button class='popuptext' id='myPopup' onclick='logout()'>Logout</button></div>";
     document.getElementById("myintake").innerHTML = "My Intake";
     document.getElementById("thirdView").innerHTML = "<div id = 'post-login-content'></div>"
 
@@ -79,6 +80,18 @@ function loginFun() {
     }
 }
 
+function myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
+function logout() {
+    logged_in = false;
+    document.getElementById("usr").remove();
+    document.getElementById("myintake").innerHTML = "login";
+    document.getElementById("thirdView").innerHTML = "<div class='container' id='login-container'> <div class='imgcontainer'><img src='photos/avatar_empty.png' alt='Avatar' class='avatar'></div><label class='login-label'><b>Username</b></label><input class='login-input' placeholder='Enter Username' id='uname' required><label class='login-label'><b>Password</b></label><input class='login-input' type='password' placeholder='Enter Password' id='upass' required><button id='loginbtn' onclick='loginFun()'>Login</button><button id='register' onclick='regisFun()'>Register</button></div>"
+    document.getElementById("messageBox").innerHTML = "";
+    renderFirstView();
+}
 
 function regisFun(){
     renderFirstView();
@@ -140,11 +153,10 @@ function regisFun(){
 </script>
 <body>
     <div class = "top">
-        <ul class="nav">
+        <ul class="nav" id="navId">
             <li onclick="renderFirstView()"><a>HOME</a></li>
             <li onclick="renderSecondView()"><a>SEARCH</a></li>
-            <li id = "myintake" onclick="renderThirdView()"><a id = "demoinner">LOGIN</a></li>
-            <li id = "usr"> </li>
+            <li id = "myintake" onclick="renderThirdView()"><a id = "demoinner">login</a></li>
         </ul>
     </div>
 
