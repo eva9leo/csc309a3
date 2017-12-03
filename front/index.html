@@ -134,7 +134,7 @@
         //alert(xmlHttp.readyState);
         var data=xmlHttp.responseText;
         var jsonResponse = JSON.parse(data);
-        
+
 
         if (jsonResponse == null){
             alert("Username do not exist");
@@ -148,7 +148,7 @@
         }
 
         //validate User first
-        
+
         document.getElementById("usr").innerHTML = username;
         document.getElementById("myintake").innerHTML = "My Intake";
         logged_in = true;

@@ -1,91 +1,71 @@
 /* Code for view2 starts */
-.results_button {
-    font-size: larger;
-	background-color: #4db8ff;
-    color: white;
-    padding: 14px 20px;
-    margin: 0px 0;
-    width: 100%;
-}
+ .results_button {
+     font-size: larger;
+ 	background-color: #4db8ff;
+     color: white;
+     padding: 14px 20px;
+     margin: 0px 0;
+     width: 100%;
+ }
 
-.results_button:hover {
-	opacity: 1;
-    background-color: #1aa3ff;
-}
+ .results_button:hover {
+ 	opacity: 1;
+     background-color: #1aa3ff;
+ }
 
-.food_info_title {
-	display: block;
-    font-size: 1.8em;
-    margin-top: 0.83em;
-    margin-bottom: 0.83em;
-    margin-left: 1em;
-    margin-right: 0;
-    font-weight: bold;
-	font-family: Monospace;
-}
+ .food_info_title {
+ 	display: block;
+     font-size: 1.8em;
+     margin-top: 0.83em;
+     margin-bottom: 0.83em;
+     margin-left: 1em;
+     margin-right: 0;
+     font-weight: bold;
+ 	font-family: Monospace;
+ }
 
-/* #add-food {
-	position: absolute;
-	right: 10%;
-	bottom:10%;
-	display: inline-block;
-	padding: 15px 32px;
-	font-size: 16px;
-} */
+ /* #add-food {
+ 	position: absolute;
+ 	right: 10%;
+ 	bottom:10%;
+ 	display: inline-block;
+ 	padding: 15px 32px;
+ 	font-size: 16px;
+ } */
 
-#number-of-servings {
-	position: absolute;
-	left: 10%;
-	bottom:10%;
-}
+ #number-of-servings {
+ 	position: absolute;
+ 	left: 10%;
+ 	bottom:10%;
+ }
 
-#search {
-    width: 12%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
+ .result-table {
+     width:100%;
+ }
 
-.result-table{
-    width:100%;
-}
-.food_info_name {
-	font-size: 1.3em;
-	margin-left: 0;
-}
+ .food_info_name {
+ 	font-size: 1.3em;
+ 	margin-left: 0;
+ }
 
-.view2_container {
-    margin: auto;
-    justify-content: space-between;
-    padding: 20px;
-    box-sizing: border-box;
-    display:flex;
-	width:80%;
-}
-.itembox {
-    box-sizing: border-box;
-}
-.search_result {
-	flex-basis: 50%;
-}
-.food_info{
-    left: 55%;
-    width: 27%;
-    position: fixed;
-	flex-basis: 40%;
-	height: 300px;
-	background-color: #bfbfbf;
-}
+ .view2_container {
+     margin: auto;
+     justify-content: space-between;
+     padding: 20px;
+     box-sizing: border-box;
+     display:flex;
+ 	 width:80%;
+ }
 
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.psw {
-        display: block;
-        float: none;
-    }
-    .cancelbtn {
-        width: 100%;
-    }
-}
+ .itembox {
+     box-sizing: border-box;
+ }
+
+ .food_info{
+     left: 55%;
+     width: 27%;
+     position: fixed;
+ 	flex-basis: 40%;
+ 	height: 300px;
+ 	background-color: #bfbfbf;
+ }

@@ -123,6 +123,16 @@ span.psw {
     float: right;
     padding-top: 16px;
 }
+.food_info_title {
+	display: block;
+    font-size: 1.8em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    margin-left: 1em;
+    margin-right: 0;
+    font-weight: bold;
+	font-family: Monospace;
+}
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
