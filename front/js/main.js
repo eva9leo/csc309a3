@@ -1,6 +1,19 @@
 
 var API_key = 'tnHClg06xiETjM4DRViZYx3W63FQcLnjhfSNAPro';
 
+let currentDate = {
+	year: 0,
+	month: 0,
+	date: 0
+}
+
+function getLocalDate() {
+	var d = new Date();
+	currentDate.year = d.getFullYear();
+	currentDate.month = d.getMonth() + 1;
+	currentDate.date = d.getDate();
+}
+
 class Record {
 
 	constructor(name, serving_number, serving_size, serving_unit, energy, protein, fat, carb){
