@@ -36,7 +36,7 @@ function loginFun() {
 
     //validate User first
     /* logged_in = true;
-    document.getElementById("navId").innerHTML += "<li id = 'usr'><button id='usrbtn' onclick='myFunction()'> </button></li>";
+    document.getElementById("navId").innerHTML += "<li id = 'usr'><button id='usrbtn' onclick='logOutPopOut()'> </button></li>";
     document.getElementById("usrbtn").innerHTML = username+"<div class='popup'><button class='popuptext' id='myPopup' onclick='logout()'>Logout</button></div>";
     document.getElementById("myintake").innerHTML = "My Intake";
     document.getElementById("thirdView").innerHTML = "<div id = 'post-login-content'></div>"
@@ -67,12 +67,15 @@ function loginFun() {
     }
 }
 
-function myFunction() {
+function logOutPopOut() {
     var popup = document.getElementById("myPopup");
     popup.classList.toggle("show");
 }
+
 function logout() {
     logged_in = false;
+	current_username= null;
+	current_password= null;
 	document.getElementById("usrbtn").onlick = ' ';
     document.getElementById("usr").remove();
     document.getElementById("myintake").innerHTML = "login";
@@ -141,7 +144,7 @@ function regisFun(){
 
 function actualLogin (name, password) {
 	logged_in = true;
-    document.getElementById("navId").innerHTML += "<li id = 'usr'><button id='usrbtn' onclick='myFunction()'> </button></li>";
+    document.getElementById("navId").innerHTML += "<li id = 'usr'><button id='usrbtn' onclick='logOutPopOut()'> </button></li>";
     document.getElementById("usrbtn").innerHTML = name+"<div class='popup'><button class='popuptext' id='myPopup' onclick='logout()'>Logout</button></div>";
     document.getElementById("myintake").innerHTML = "My Intake";
     document.getElementById("thirdView").innerHTML = "<div id = 'post-login-content'></div>"
