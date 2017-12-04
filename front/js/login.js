@@ -188,6 +188,8 @@ function getRecords(username, password, year, month, day) {
 		
 	});
 	
+	updateTotalDisplay();
+	
 }
 
 function setUpRecordView() {

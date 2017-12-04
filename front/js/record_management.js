@@ -111,13 +111,22 @@ function displayRecord(k){
 }
 
 function removeRecord(k){
-	$('#record-nutrition-ul').empty();
-	recordDict[k].removeRecord();
-	delete recordDict[k];
-	var search_key = '#' + k;
-	$(search_key).remove();
-	alert('A record has been removed.')
-	updateTotalDisplay();
+	
+	$.ajax({
+		type: 'DELETE',
+		url: (backAPI_url + '/records?username=' + current_username + '&password=' + current_password + '&_id=' + recordDict[k].id),
+		success: function(msg) {
+			console.log(msg);
+			$('#record-nutrition-ul').empty();
+			recordDict[k].removeRecord();
+			delete recordDict[k];
+			var search_key = '#' + k;
+			$(search_key).remove();
+			alert('A record has been removed.')
+			updateTotalDisplay();			
+		}
+	});
+	
 }
 
 function changeRecord(k, num){
