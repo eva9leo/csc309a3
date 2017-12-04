@@ -60,7 +60,24 @@ function loginFun() {
         }
     }
 }
+function refreshFun(){
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", backAPI_url + "/messages", false ); // false for synchronous request
+    xmlHttp.send();
+    var data=xmlHttp.responseText;
+    var Response = JSON.parse(data);
+    var response = JSON.parse(xmlHttp.responseText);
+    var i = 0;
+    setInterval(change2, 1000);
+    function change2(){
+        elem.innerHTML = response[i].title + ":   " + response[i].contents;
+        i++;
+        if (i >= response.length) {
+            i = 0;
+        }
+    }
 
+}
 function logOutPopOut() {
     var popup = document.getElementById("myPopup");
     popup.classList.toggle("show");
