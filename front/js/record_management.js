@@ -135,26 +135,31 @@ function changeRecord(k, num){
 		month: currentDate.month,
 		day:currentDate.date,
 		name: recordDict[k].name,
-		ndbno: ndbno,
-		serving_number: serving_number,
-		serving_size: serving_size,
-		serving_unit: serving_unit,
-		energy: energy,
-		protein: protein,
-		fat: fat,
-		carb: carb
+		ndbno: recordDict[k].ndbno,
+		serving_number: recordDict[k].serving_number,
+		serving_size: recordDict[k].serving_size,
+		serving_unit: recordDict[k].serving_unit,
+		energy: recordDict[k].energy,
+		protein: recordDict[k].protein,
+		fat: recordDict[k].fat,
+		carb: recordDict[k].carb
 	};
 	
 	$.ajax({
 		type: 'PUT',
 		url: (backAPI_url + '/records?username=' + current_username + '&password=' + current_password + '&_id=' + recordDict[k].id + '&serving_number=' + num),
-		
+		data: JSON.stringify(local_record),
+		dataType: "json",
+		contentType: "application/json",
+		success: function(msg) {
+			console.log(msg);
+			$('#record-nutrition-ul').empty();
+			recordDict[k].changeServingNumber(num);
+			displayRecord(k);
+			updateTotalDisplay();			
+		}
 	});
 	
-	$('#record-nutrition-ul').empty();
-	recordDict[k].changeServingNumber(num);
-	displayRecord(k);
-	updateTotalDisplay();
 }
 
 function updateTotalDisplay() {
