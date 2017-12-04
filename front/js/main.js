@@ -1,5 +1,12 @@
 
 var API_key = 'tnHClg06xiETjM4DRViZYx3W63FQcLnjhfSNAPro';
+var logged_in = false;
+var backAPI_url = 'http://74.15.30.211:3000/api';
+var url_login = backAPI_url + "/users/";
+var url_regis = backAPI_url + "/users/user?username=";
+var url_post = backAPI_url + "/users";
+var current_username= null;
+var current_password= null;
 
 let currentDate = {
 	year: 0,
@@ -16,7 +23,7 @@ function getLocalDate() {
 
 class Record {
 
-	constructor(name, serving_number, serving_size, serving_unit, energy, protein, fat, carb){
+	constructor(name, serving_number, serving_size, serving_unit, energy, protein, fat, carb, id){
 		this.name = name;
 		this.serving_number = serving_number;
 		this.serving_size = serving_size;
@@ -25,6 +32,7 @@ class Record {
 		this.protein = protein;
 		this.fat = fat;
 		this.carb = carb;
+		this.id = id;
 		this.addRecord();
 	}
 

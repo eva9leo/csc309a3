@@ -1,10 +1,4 @@
-var logged_in = false;
-var backAPI_url = 'http://74.15.30.211:3000/api';
-var url_login = backAPI_url + "/users/";
-var url_regis = backAPI_url + "/users/user?username=";
-var url_post = backAPI_url + "/users";
-var current_username= null;
-var current_password= null;
+
 function loginFun() {
     renderFirstView();
     //validate User first
@@ -154,13 +148,54 @@ function actualLogin (name, password) {
 	
 	getLocalDate()
 	console.log(currentDate.year + '/' + currentDate.month + '/' + currentDate.date);
-	
 	setUpRecordView();
 	
 	current_username= name;
 	current_password= password;
 	console.log('Username: ' + current_username);
 	console.log('Password: ' + current_password);
+	
+	getRecords(current_username, current_password, currentDate.year, currentDate.month, currentDate.date);
+	
+}
+
+function getRecords(username, password, year, month, day) {
+	$('#record-list').empty();
+	$('#record-nutrition-ul').empty();
+	// Initialize record key
+	record_key = 0;
+	// Initialize records
+	recordDict = {};
+	Record.num_of_record = 0;
+	Record.energy_sum = 0;
+	Record.protein_sum = 0;
+	Record.fat_sum = 0;
+	Record.carb_sum = 0;
+	
+	$.ajax({
+		type: 'GET',
+		url: (backAPI_url + '/records?username=' + current_username + '&password=' + current_password + '&year=' + year + '&month=' + month + '&day=' + day),
+		success: function(records) {
+			console.log(records);
+			$.each(
+				records, function(i, record) {
+					var serving_unit = record['serving_unit'];
+					var serving_size = record['serving_size'];
+					var serving_number = record['serving_number'];
+					var energy = record['energy'];
+					var protein = record['protein'];
+					var fat = record['fat'];
+					var carb = record['carb'];
+					var id = record['_id'];
+					var name = record['name']
+					createLocalRecord(name, serving_number, serving_size, serving_unit, energy, protein, fat, carb, id);
+
+				}
+			);
+		}
+		
+	});
+	
 }
 
 function setUpRecordView() {
@@ -255,7 +290,16 @@ function setUpDateSelection() {
 	// Setup dates selection
 	updateDate();
 	
-	$('#date-selection').append('<button id="change-date">Change Date</button>')
+	$('#date-selection').append('<button id="change-date">Change Date</button>');
+	$('#change-date').click(
+		function() {
+			currentDate.year = Number(document.getElementById('year-select').value);
+			currentDate.month = Number(document.getElementById('month-select').value);
+			currentDate.date = Number(document.getElementById('date-select').value);
+			console.log(currentDate.date);
+			getRecords(current_username, current_password, currentDate.year, currentDate.month, currentDate.date);
+		}
+	);
 }
 
 function updateDate(){
