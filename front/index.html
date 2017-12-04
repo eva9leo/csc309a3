@@ -52,12 +52,12 @@
 ,"People who laugh actually live longer than those who don’t laugh. Few persons realize that health actually varies according to the amount of laughter. – James J. Walsh",
 "The reason I exercise is for the quality of life I enjoy. – Kenneth H. Cooper"];
             var counter = 0;
-            var elem = document.getElementById("changeText");
-            elem.innerHTML = "Welcome to MyFood!"
+            var elemw = document.getElementById("changeText");
+            elemw.innerHTML = "Welcome to MyFood!"
             setInterval(change, 10000);
 
             function change() {
-              elem.innerHTML = text[counter];
+              elemw.innerHTML = text[counter];
               counter++;
               if (counter >= text.length) {
                 counter = 0;
