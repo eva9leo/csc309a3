@@ -133,8 +133,8 @@ function regisFun(){
 
 function actualLogin (name, password) {
 	logged_in = true;
-    document.getElementById("navId").innerHTML += "<li id = 'usr'><button id='usrbtn' onclick='logOutPopOut()'> </button></li>";
-    document.getElementById("usrbtn").innerHTML = name+"<div class='popup'><button class='popuptext' id='myPopup' onclick='logout()'>Logout</button></div>";
+    document.getElementById("navId").innerHTML += "<li id = 'usr'><button id='usrbtn' onmouseover='logOutPopOut()'> </button></li>";
+    document.getElementById("usrbtn").innerHTML = name+"<div class='popup'><button class='popuptext' id='myPopup' onmouseover='logOutPopOut()' onclick='logout()'>Logout</button></div>";
     document.getElementById("myintake").innerHTML = "My Intake";
     document.getElementById("thirdView").innerHTML = "<div id = 'post-login-content'></div>"
 	
