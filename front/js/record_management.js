@@ -1,6 +1,54 @@
 
-function addFood(name, serving_number, serving_size, serving_unit, energy, protein, fat, carb){
-	var new_key = 'record' + record_key.toString();
+function addFood(name, serving_number, serving_size, serving_unit, energy, protein, fat, carb, ndbno){
+	var local_record = {
+		year: currentDate.year,
+		month: currentDate.month,
+		day:currentDate.date,
+		name: name,
+		ndbno: ndbno,
+		serving_number: serving_number,
+		serving_size: serving_size,
+		serving_unit: serving_unit,
+		energy: energy,
+		protein: protein,
+		fat: fat,
+		carb: carb
+	};
+	
+	$.ajax({
+		type: 'POST',
+		url: (backAPI_url + '/records?username=' + current_username + '&?password=' + current_password),
+		data: JSON.stringify(local_record),
+		dataType: "json",
+		contentType: "application/json",
+		success: function() {
+			var new_key = 'record' + record_key.toString();
+			record_key++;
+			recordDict[new_key] = new Record(name, serving_number, serving_size, serving_unit, energy, protein, fat, carb);
+			$('#record-list').append(
+				$('<button>', {
+				class: 'results_button',
+				id: new_key,
+				text: name,
+				title: 'Click to edit this record'
+				}).click( 
+				function() {
+					displayRecord(new_key);
+				}
+				)
+			);
+			
+			alert('A record has been added to your intake records');
+			
+			updateTotalDisplay()			
+		},
+	error: function() {
+		alert('Error adding order to server');
+	}
+	});
+	
+	
+/* 	var new_key = 'record' + record_key.toString();
 	record_key++;
 	recordDict[new_key] = new Record(name, serving_number, serving_size, serving_unit, energy, protein, fat, carb);
 	$('#record-list').append(
@@ -16,7 +64,9 @@ function addFood(name, serving_number, serving_size, serving_unit, energy, prote
 		)
 	);
 	
-	updateTotalDisplay()
+	alert('A record has been added to your intake records');
+	
+	updateTotalDisplay() */
 }
 
 function displayRecord(k){

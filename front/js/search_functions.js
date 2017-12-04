@@ -88,7 +88,7 @@ function DisplayItemInfo(ndbno) {
 
 			$('#nutrition-list').empty();
 			// Display serving
-			$('#nutrition-list').append($('<li>').text('Serving size: ' + serving_size.toString() + ' ' + sejrving_unit));
+			$('#nutrition-list').append($('<li>').text('Serving size: ' + serving_size.toString() + ' ' + serving_unit));
 			// Display energy
 			$('#nutrition-list').append($('<li>').text('Energy: ' + energy_scalar.toString() + ' ' + energy_unit));
 			// Display protein
@@ -125,9 +125,8 @@ function DisplayItemInfo(ndbno) {
 					} else {
 						var serving_number_var = Number(serving_number_input);
 						addFood(
-						data.report.food.name, serving_number_var, serving_size, serving_unit, energy_scalar, protein_scalar, fat_scalar, carb_scalar
+						data.report.food.name, serving_number_var, serving_size, serving_unit, energy_scalar, protein_scalar, fat_scalar, carb_scalar, ndbno
 						);
-						alert('A record has been added to your intake records');
 					}
 
 				})

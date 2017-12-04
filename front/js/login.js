@@ -1,7 +1,10 @@
 var logged_in = false;
-var url_login = "http://74.15.30.211:3000/api/users/";
-var url_regis = "http://74.15.30.211:3000/api/users/user?username=";
-var url_post = "http://74.15.30.211:3000/api/users";
+var backAPI_url = 'http://74.15.30.211:3000/api';
+var url_login = backAPI_url + "/users/";
+var url_regis = backAPI_url + "/users/user?username=";
+var url_post = backAPI_url + "/users";
+var current_username= null;
+var current_password= null;
 function loginFun() {
     renderFirstView();
     //validate User first
@@ -44,7 +47,7 @@ function loginFun() {
     document.getElementById("myintake").innerHTML = "My Intake";
     document.getElementById("thirdView").innerHTML = "<div id = 'post-login-content'></div>"
 	setUpRecordView(); */
-	actualLogin(username);
+	actualLogin(username, password);
 
     var elem = document.getElementById("messageBox");
     elem.innerHTML = "Message from Admin Team: "
@@ -54,7 +57,7 @@ function loginFun() {
     setInterval(change2, 10000);
 
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "http://74.15.30.211:3000/api/messages", false ); // false for synchronous request
+    xmlHttp.open( "GET", backAPI_url + "/messages", false ); // false for synchronous request
     xmlHttp.send();
     var data=xmlHttp.responseText;
     var Response = JSON.parse(data);
@@ -113,7 +116,7 @@ function regisFun(){
         alert("register successful!");
     }
 	//validate User first
-	actualLogin(username);
+	actualLogin(username, password);
     /* logged_in = true;
     document.getElementById("usr").innerHTML = username;
     document.getElementById("myintake").innerHTML = "My Intake";
@@ -127,7 +130,7 @@ function regisFun(){
     }
     setInterval(change2, 10000);
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "http://74.15.30.211:3000/api/messages", false ); // false synchronous request
+    xmlHttp.open( "GET", backAPI_url + "/messages", false ); // false synchronous request
     xmlHttp.send();
     var response = JSON.parse(xmlHttp.responseText);
     var i = 0;
@@ -142,7 +145,7 @@ function regisFun(){
     }
 }
 
-function actualLogin (name) {
+function actualLogin (name, password) {
 	logged_in = true;
     document.getElementById("navId").innerHTML += "<li id = 'usr'><button id='usrbtn' onclick='myFunction()'> </button></li>";
     document.getElementById("usrbtn").innerHTML = name+"<div class='popup'><button class='popuptext' id='myPopup' onclick='logout()'>Logout</button></div>";
@@ -153,6 +156,11 @@ function actualLogin (name) {
 	console.log(currentDate.year + '/' + currentDate.month + '/' + currentDate.date);
 	
 	setUpRecordView();
+	
+	current_username= name;
+	current_password= password;
+	console.log('Username: ' + current_username);
+	console.log('Password: ' + current_password);
 }
 
 function setUpRecordView() {
