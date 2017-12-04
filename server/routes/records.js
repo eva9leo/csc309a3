@@ -71,7 +71,7 @@ router.delete('/', function(req,res){
             if(err){
                 res.json({"success":false});
             }
-            res.json(doc);
+            res.json({"success":true});
         })
 });
 
