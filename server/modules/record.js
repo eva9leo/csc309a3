@@ -30,22 +30,26 @@ var recordSchema = mongoose.Schema({
         required: true
     },
     serving_size:{
-        type: Number,
+        type: Number
     },
     serving_unit:{
-        type: String,
+        type: String
     },
     energy:{
-        type: Number,
+        type: Number
     },
     protein:{
-        type: Number,
+        type: Number
     },
     fat:{
-        type: Number,
+        type: Number
     },
     carb:{
-        type: Number,
+        type: Number
+    },
+    createAt:{
+        type: Date,
+        default: Date.now()
     }
 });
 module.exports = mongoose.model('Record',recordSchema );

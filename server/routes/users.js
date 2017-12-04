@@ -27,15 +27,32 @@ router.post("/", function (req, res) {
     })
 });
 router.get('/user', function(req, res) {
-  var username = req.param("username");
-  User.findOne({"username": username},"username password", function (err, doc) {
+  var username = req.query.username;
+
+  if(!username){
+      res.send("Username and Password Required");
+  }
+  User.findOne({"username": username},"username", function (err, doc) {
       if(err){
         throw err;
       }
       res.json(doc);
   })
 });
+router.get('/:username', function(req, res) {
+    var username = req.params.username;
+    var password = req.query.password;
+    if(!username){
+        res.send("Username and Password Required");
+    }
+    User.findOne({"username": username, "password":password},"username", function (err, doc) {
+        if(err){
+            throw err;
+        }
+        res.json(doc);
 
+    })
+});
 router.delete('/',function(req, res){
     User.remove({}, function(err){
         if(err){

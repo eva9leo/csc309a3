@@ -3,7 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Msg = require('../modules/message');
 router.get('/',function(req, res){
-    Msg.find(function(err, msg){
+    Msg.find({}).sort("-createAt").exec(function(err, msg){
         if(err){
             throw err;
         }
@@ -16,7 +16,8 @@ router.post('/',function(req, res){
     if(!msg.title||!msg.contents){
         throw err;
     }
-    Msg.create(req.body, function(err, msg){
+    msg.createAt = Date.now();
+    Msg.create(msg, function(err, msg){
         if(err){
             throw err;
         }
@@ -24,10 +25,10 @@ router.post('/',function(req, res){
     })
 });
 
-router.delete('/1234',function(req, res){
-    Msg.remove({}, function(err){
+router.delete('/:id',function(req, res){
+    Msg.remove({"_id":req.params.id}, function(err){
         if(err){
-            throw err;
+            res.json({"success": false});
         }
         res.json({"success": true});
     })

@@ -6,13 +6,14 @@ var Record = require('../modules/record');
 
 router.get('/', function(req,res){
     var username = req.query.username;
+    var password = req.query.password;
     var year = req.query.year;
     var month = req.query.month;
     var day = req.query.day;
     if(!username||!year||!month||!day){
         throw err;
     }
-    User.findOne({"username":username}, function(err, user){
+    User.findOne({"username":username, "password":password}, null, {sort:{"createAt":1}},function(err, user){
         if(!user){
             res.json([]);
 
@@ -35,20 +36,20 @@ router.get('/', function(req,res){
 
 router.post('/', function(req,res){
     var body = req.body;
-    var username = req.param("username");
-    if(!username||!body.year||!body.month||!body.day){
+    var username = req.query.username;
+    var password = req.query.password;
+    if(!username||!password||!body.year||!body.month||!body.day||!body.ndbno||!body.serving_number){
         throw err;
     }
-    User.findOne({"username":username}, function(err, user){
+    User.findOne({"username":username, "password":password}, function(err, user){
         if(!user){
-            res.json({"success":false});
+            res.json(null);
         }else{
             var record = new Record(body);
-            console.log(record._id);
+            record.createAt = Date.now();
             User.update({_id:user._id}, {"$push": {"records":record}},function (err) {
                 if(err){
-                    console.log("error\n")
-                    res.json({"success":false});
+                    res.json(null);
                 }else{
                     res.json(record);
                 }
@@ -58,11 +59,14 @@ router.post('/', function(req,res){
 });
 
 router.delete('/', function(req,res){
-    
-    var username = req.query.username;
-    var id = req.query._id;
 
-    User.findOneAndUpdate({"username":username, "records._id":id},
+    var username = req.query.username;
+    var password = req.query.password;
+    var id = req.query._id;
+    if(!username||!id||!password){
+        res.json({"success":false});
+    }
+    User.findOneAndUpdate({"username":username,  "password":password, "records._id":id},
         {"$pull":{}},function (err) {
             if(err){
                 res.json({"success":false});
@@ -73,13 +77,14 @@ router.delete('/', function(req,res){
 
 router.put('/', function(req,res){
     var username = req.query.username;
+    var password = req.query.password;
     var number = req.query.serving_number;
     var id = req.query._id;
-    if(!username||!number||!id){
+    if(!username||!number||!id||!password){
         res.json({"success":false});
     }
 
-    User.findOneAndUpdate({"username":username, "records._id":id},
+    User.findOneAndUpdate({"username":username, "password":password, "records._id":id},
         {"$set":{"records.$.serving_number":number}},function (err) {
         if(err){
             res.json({"success":false});
