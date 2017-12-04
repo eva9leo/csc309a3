@@ -28,14 +28,14 @@
 * password
 
 ## Records Endpoints
-### GET `/api/records?username=<username>&?password=<password>&?year=<year>&?month=<month>&?day=<day>`
+### GET `/api/records?username=<username>&password=<password>&year=<year>&month=<month>&day=<day>`
 #### Required Queries
 * username
 * password
 * year
 * month
 * day
-### POST `/api/records?username=<username>&?password=<password>`
+### POST `/api/records?username=<username>&password=<password>`
 #### Required Queries
 * username
 * password
@@ -45,13 +45,13 @@
 * day
 * ndbno
 * serving_number
-### PUT `/api/records?username=<username>&?password=<password>&?_id=<_id>&?serving_number=<serving_number>`
+### PUT `/api/records?username=<username>&password=<password>&_id=<_id>&serving_number=<serving_number>`
 #### Required Queries
 * username
 * password
 * _id
 * serving_number
-### DELETE `/api/records?username=<username>&?password=<password>&?_id=<_id>`
+### DELETE `/api/records?username=<username>&password=<password>&_id=<_id>`
 #### Required Queries
 * username
 * password
