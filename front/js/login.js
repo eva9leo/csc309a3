@@ -35,12 +35,6 @@ function loginFun() {
     }
 
     //validate User first
-    /* logged_in = true;
-    document.getElementById("navId").innerHTML += "<li id = 'usr'><button id='usrbtn' onclick='logOutPopOut()'> </button></li>";
-    document.getElementById("usrbtn").innerHTML = username+"<div class='popup'><button class='popuptext' id='myPopup' onclick='logout()'>Logout</button></div>";
-    document.getElementById("myintake").innerHTML = "My Intake";
-    document.getElementById("thirdView").innerHTML = "<div id = 'post-login-content'></div>"
-	setUpRecordView(); */
 	actualLogin(username, password);
 
     var elem = document.getElementById("messageBox");
@@ -114,11 +108,6 @@ function regisFun(){
     }
 	//validate User first
 	actualLogin(username, password);
-    /* logged_in = true;
-    document.getElementById("usr").innerHTML = username;
-    document.getElementById("myintake").innerHTML = "My Intake";
-    document.getElementById("thirdView").innerHTML = "<div id = 'post-login-content'></div>"
-    setUpRecordView(); */
 
     var elem = document.getElementById("messageBox");
     elem.innerHTML = "Message from Admin Team: "
