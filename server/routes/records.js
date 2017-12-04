@@ -66,12 +66,12 @@ router.delete('/', function(req,res){
     if(!username||!id||!password){
         res.json({"success":false});
     }
-    User.findOneAndUpdate({"username":username,  "password":password, "records._id":id},
-        {"$pull":{}},function (err) {
+    User.findOneAndUpdate({"username":username,  "password":password},
+        {"$pull":{"records":{"_id":id}}},{new:true},function (err,doc) {
             if(err){
                 res.json({"success":false});
             }
-            res.json({"success":true});
+            res.json(doc);
         })
 });
 
