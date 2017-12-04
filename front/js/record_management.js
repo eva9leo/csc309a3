@@ -39,7 +39,6 @@ function addFood(name, serving_number, serving_size, serving_unit, energy, prote
 			);
 			
 			alert('A record has been added to your intake records');
-			
 			updateTotalDisplay()			
 		},
 	error: function() {

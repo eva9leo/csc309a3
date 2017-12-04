@@ -84,7 +84,7 @@ function DisplayItemInfo(ndbno) {
 
 			// Display name
 			$('#foodname').remove();
-			$('.food_info_title').after($('<h2 class = "food_info_title food_info_name" id = "foodname">').text(data.report.food.name));
+			$('#nutrition-list').before($('<h2 class = "food_info_title food_info_name" id = "foodname">').text(data.report.food.name));
 
 			$('#nutrition-list').empty();
 			// Display serving
