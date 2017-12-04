@@ -22,8 +22,6 @@ function addFood(name, serving_number, serving_size, serving_unit, energy, prote
 		dataType: "json",
 		contentType: "application/json",
 		success: function(msg) {
-			console.log(msg);
-			console.log(msg['_id']);
 			createLocalRecord(name, serving_number, serving_size, serving_unit, energy, protein, fat, carb, msg['_id'], ndbno);
 			alert('A record has been added to your intake records');
 		},
@@ -111,19 +109,22 @@ function displayRecord(k){
 }
 
 function removeRecord(k){
-	
 	$.ajax({
 		type: 'DELETE',
 		url: (backAPI_url + '/records?username=' + current_username + '&password=' + current_password + '&_id=' + recordDict[k].id),
 		success: function(msg) {
-			console.log(msg);
-			$('#record-nutrition-ul').empty();
-			recordDict[k].removeRecord();
-			delete recordDict[k];
-			var search_key = '#' + k;
-			$(search_key).remove();
-			alert('A record has been removed.')
-			updateTotalDisplay();			
+			if (msg['success'] == true) {
+				$('#record-nutrition-ul').empty();
+				recordDict[k].removeRecord();
+				delete recordDict[k];
+				var search_key = '#' + k;
+				$(search_key).remove();
+				alert('A record has been removed.')
+				updateTotalDisplay();					
+			} else {
+				alert('Sorry, there was an error deleting the record.');
+			}
+		
 		}
 	});
 	
@@ -152,11 +153,14 @@ function changeRecord(k, num){
 		dataType: "json",
 		contentType: "application/json",
 		success: function(msg) {
-			console.log(msg);
-			$('#record-nutrition-ul').empty();
-			recordDict[k].changeServingNumber(num);
-			displayRecord(k);
-			updateTotalDisplay();			
+			if (msg['success'] == true) {
+				$('#record-nutrition-ul').empty();
+				recordDict[k].changeServingNumber(num);
+				displayRecord(k);
+				updateTotalDisplay();					
+			} else {
+				alert('Sorry, there was an error modifying the record.');
+			}	
 		}
 	});
 	
