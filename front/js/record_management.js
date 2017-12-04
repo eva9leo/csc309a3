@@ -17,7 +17,7 @@ function addFood(name, serving_number, serving_size, serving_unit, energy, prote
 	
 	$.ajax({
 		type: 'POST',
-		url: (backAPI_url + '/records?username=' + current_username + '&?password=' + current_password),
+		url: (backAPI_url + '/records?username=' + current_username + '&password=' + current_password),
 		data: JSON.stringify(local_record),
 		dataType: "json",
 		contentType: "application/json",
