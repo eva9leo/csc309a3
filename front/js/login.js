@@ -22,6 +22,7 @@ function loginFun() {
     }
 
 
+
     var GetUser = url_login+username+"?password="+password;
     xmlHttp.open( "GET", GetUser, false ); // false for synchronous request
     xmlHttp.send();
@@ -37,13 +38,13 @@ function loginFun() {
     }
 
     //validate User first
-    logged_in = true;
+    /* logged_in = true;
     document.getElementById("navId").innerHTML += "<li id = 'usr'><button id='usrbtn' onclick='myFunction()'> </button></li>";
     document.getElementById("usrbtn").innerHTML = username+"<div class='popup'><button class='popuptext' id='myPopup' onclick='logout()'>Logout</button></div>";
     document.getElementById("myintake").innerHTML = "My Intake";
     document.getElementById("thirdView").innerHTML = "<div id = 'post-login-content'></div>"
-
-    setUpRecordView();
+	setUpRecordView(); */
+	actualLogin(username);
 
     var elem = document.getElementById("messageBox");
     elem.innerHTML = "Message from Admin Team: "
@@ -53,7 +54,7 @@ function loginFun() {
     setInterval(change2, 10000);
 
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "http://192.168.2.21:3000/api/messages", false ); // false for synchronous request
+    xmlHttp.open( "GET", "http://74.15.30.211:3000/api/messages", false ); // false for synchronous request
     xmlHttp.send();
     var data=xmlHttp.responseText;
     var Response = JSON.parse(data);
@@ -71,14 +72,11 @@ function loginFun() {
 
 function myFunction() {
     var popup = document.getElementById("myPopup");
-    console.log("popup: " + popup);
-    console.log("popup-cl: " + popup.classList);
     popup.classList.toggle("show");
 }
-
 function logout() {
     logged_in = false;
-    document.getElementById("usrbtn").onclick = '';
+	document.getElementById("usrbtn").onlick = ' ';
     document.getElementById("usr").remove();
     document.getElementById("myintake").innerHTML = "login";
     document.getElementById("thirdView").innerHTML = "<div class='container' id='login-container'> <div class='imgcontainer'><img src='photos/avatar_empty.png' alt='Avatar' class='avatar'></div><label class='login-label'><b>Username</b></label><input class='login-input' placeholder='Enter Username' id='uname' required><label class='login-label'><b>Password</b></label><input class='login-input' type='password' placeholder='Enter Password' id='upass' required><button id='loginbtn' onclick='loginFun()'>Login</button><button id='register' onclick='regisFun()'>Register</button></div>"
@@ -114,13 +112,13 @@ function regisFun(){
         //alert(xmlHttp.status);
         alert("register successful!");
     }
-    logged_in = true;
-    //validate User first
+	//validate User first
+	actualLogin(username);
+    /* logged_in = true;
     document.getElementById("usr").innerHTML = username;
     document.getElementById("myintake").innerHTML = "My Intake";
-    logged_in = true;
     document.getElementById("thirdView").innerHTML = "<div id = 'post-login-content'></div>"
-    setUpRecordView();
+    setUpRecordView(); */
 
     var elem = document.getElementById("messageBox");
     elem.innerHTML = "Message from Admin Team: "
@@ -129,7 +127,7 @@ function regisFun(){
     }
     setInterval(change2, 10000);
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "http://192.168.2.21:3000/api/messages", false ); // false synchronous request
+    xmlHttp.open( "GET", "http://74.15.30.211:3000/api/messages", false ); // false synchronous request
     xmlHttp.send();
     var response = JSON.parse(xmlHttp.responseText);
     var i = 0;
@@ -268,7 +266,7 @@ function updateDate(){
         if ((year % 4) == 0) {
 			total_dates = 29;
 		} else {
- 			total_dates = 28;
+			total_dates = 28;
 		}
     } else {
 		total_dates = 30;
