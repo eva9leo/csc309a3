@@ -24,7 +24,7 @@ function addFood(name, serving_number, serving_size, serving_unit, energy, prote
 		success: function(msg) {
 			console.log(msg);
 			console.log(msg['_id']);
-			createLocalRecord(name, serving_number, serving_size, serving_unit, energy, protein, fat, carb, msg['_id']);
+			createLocalRecord(name, serving_number, serving_size, serving_unit, energy, protein, fat, carb, msg['_id'], ndbno);
 			alert('A record has been added to your intake records');
 		},
 	error: function() {
@@ -34,10 +34,10 @@ function addFood(name, serving_number, serving_size, serving_unit, energy, prote
 	
 }
 
-function createLocalRecord(name, serving_number, serving_size, serving_unit, energy, protein, fat, carb, id) {
+function createLocalRecord(name, serving_number, serving_size, serving_unit, energy, protein, fat, carb, id, ndbno) {
 	var new_key = 'record' + record_key.toString();
 	record_key++;
-	recordDict[new_key] = new Record(name, serving_number, serving_size, serving_unit, energy, protein, fat, carb, id);
+	recordDict[new_key] = new Record(name, serving_number, serving_size, serving_unit, energy, protein, fat, carb, id, ndbno);
 	$('#record-list').append(
 		$('<button>', {
 		class: 'results_button',
@@ -130,6 +130,27 @@ function removeRecord(k){
 }
 
 function changeRecord(k, num){
+	var local_record = {
+		year: currentDate.year,
+		month: currentDate.month,
+		day:currentDate.date,
+		name: recordDict[k].name,
+		ndbno: ndbno,
+		serving_number: serving_number,
+		serving_size: serving_size,
+		serving_unit: serving_unit,
+		energy: energy,
+		protein: protein,
+		fat: fat,
+		carb: carb
+	};
+	
+	$.ajax({
+		type: 'PUT',
+		url: (backAPI_url + '/records?username=' + current_username + '&password=' + current_password + '&_id=' + recordDict[k].id + '&serving_number=' + num),
+		
+	});
+	
 	$('#record-nutrition-ul').empty();
 	recordDict[k].changeServingNumber(num);
 	displayRecord(k);

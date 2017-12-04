@@ -23,7 +23,7 @@ function getLocalDate() {
 
 class Record {
 
-	constructor(name, serving_number, serving_size, serving_unit, energy, protein, fat, carb, id){
+	constructor(name, serving_number, serving_size, serving_unit, energy, protein, fat, carb, id, ndbno){
 		this.name = name;
 		this.serving_number = serving_number;
 		this.serving_size = serving_size;
@@ -33,6 +33,7 @@ class Record {
 		this.fat = fat;
 		this.carb = carb;
 		this.id = id;
+		this.ndbno = ndbno;
 		this.addRecord();
 	}
 

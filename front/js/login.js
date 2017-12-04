@@ -197,7 +197,8 @@ function getRecords(username, password, year, month, day) {
 					var carb = record['carb'];
 					var id = record['_id'];
 					var name = record['name']
-					createLocalRecord(name, serving_number, serving_size, serving_unit, energy, protein, fat, carb, id);
+					var ndbno = record['ndbno']
+					createLocalRecord(name, serving_number, serving_size, serving_unit, energy, protein, fat, carb, id, ndbno);
 
 				}
 			);
